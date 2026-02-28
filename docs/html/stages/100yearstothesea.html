@@ -59,6 +59,13 @@ nav, main {
   font-weight: 500;
 }
 
+nonetouch {
+  -webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
   </style>
 </head>
 
@@ -126,7 +133,7 @@ nav, main {
 
 <header id="site-header" class="flex items-center justify-center pt-12 pb-16 px-4">
   <div class="flex flex-col items-center gap-16 [writing-mode:vertical-rl]">
-  <p class="self-start anim-fade2 text-[1rem] font-medium tracking-[0.1em] text-gray-700">
+  <p class="self-start anim-fade2 text-[1rem] font-medium tracking-[0.1em] text-gray-700 nonetouch">
     劇団ケッペキ<br><span style="text-orientation: upright;">2026</span>年度新入生歓迎公演
   </p>
   <img src="logo.png" alt="海まで100年" id="logo"
