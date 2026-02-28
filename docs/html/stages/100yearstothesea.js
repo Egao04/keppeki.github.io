@@ -27,25 +27,6 @@ menu.querySelectorAll('a').forEach(link => {
   });
 });
 
-
-// ===========================
-// キャッチフレーズ フェードイン（スクロール検知）
-// ===========================
-
-const catchphrase = document.getElementById('catchphrase');
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      catchphrase.classList.remove('opacity-0', 'translate-y-4');
-      observer.unobserve(catchphrase); // 一度だけ発火
-    }
-  });
-}, { threshold: 0.5 }); // 要素が50%見えたら発火
-
-observer.observe(catchphrase);
-
-
 // ===========================
 // ヒーローアニメーション（スクロール連動）
 // ===========================
@@ -57,7 +38,7 @@ const heroArrow   = document.getElementById('hero-arrow');
 const header      = document.getElementById('site-header');
 
 const SCROLL_END   = 400; // この値でアニメーション完了（px）
-const SCROLL_CLEAR = 600; // この値でヒーロー要素が完全に消える（px）
+const SCROLL_CLEAR = 400; // この値でヒーロー要素が完全に消える（px）
 
 // ヘッダーの位置を取得（スクロール後の吸収先）
 function getHeaderPos() {
@@ -120,30 +101,30 @@ function onScroll() {
 window.addEventListener('scroll', onScroll);
 onScroll(); // 初期状態にも適用
 
-// ===========================
-// セクション フェードイン
-// ===========================
+// // ===========================
+// // セクション フェードイン
+// // ===========================
 
-const fadeEls = document.querySelectorAll(
-  'header, main > section, footer'
-);
+// const fadeEls = document.querySelectorAll(
+//   'header, main > section, footer'
+// );
 
-fadeEls.forEach((el, i) => {
-  el.classList.add('fade-in');
-  el.style.transitionDelay = `${i * 0.05}s`;
-  el.dataset.seen = 'false'; // ← 追加
-});
+// fadeEls.forEach((el, i) => {
+//   el.classList.add('fade-in');
+//   el.style.transitionDelay = `${i * 0.05}s`;
+//   el.dataset.seen = 'false'; // ← 追加
+// });
 
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      entry.target.dataset.seen = 'true'; // ← 一度見えたら記録
-    } else if (entry.target.dataset.seen === 'true') {
-      // 「一度も見ていない」要素は退場させない
-      entry.target.classList.remove('visible');
-    }
-  });
-}, { threshold: 0.6});
+// const sectionObserver = new IntersectionObserver((entries) => {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+//       entry.target.classList.add('visible');
+//       entry.target.dataset.seen = 'true'; // ← 一度見えたら記録
+//     } else if (entry.target.dataset.seen === 'true') {
+//       // 「一度も見ていない」要素は退場させない
+//       entry.target.classList.remove('visible');
+//     }
+//   });
+// }, { threshold: 0.6});
 
-fadeEls.forEach(el => sectionObserver.observe(el));
+// fadeEls.forEach(el => sectionObserver.observe(el));
