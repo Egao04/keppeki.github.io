@@ -36,17 +36,45 @@
     /* 縦中横 */
     .tcy { text-combine-upright: all; }
 
+    #logo {
+    filter: contrast(0.3); 
+    opacity: 0.5;
+    /* filter: url(#rough-fade); */
+    /* mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 70%,
+    transparent 100%
+  ); */
+     mask-image: radial-gradient(
+    ellipse 50% 80% at 50% 50%,
+    black 70%,
+    transparent 100%
+  );
+    } */
+
+
 nav, main {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 500;
 }
-    
 
-    
   </style>
 </head>
 
 <body class="bg-white text-black" style="font-family: sans-serif;">
+  <svg class="hidden" aria-hidden="true">
+  <defs>
+    <filter id="rough-fade">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="8" seed="5" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="gray"/>
+      <feComponentTransfer in="gray" result="mask">
+        <feFuncA type="linear" slope="3" intercept="-0.3"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="mask" operator="in"/>
+    </filter>
+  </defs>
+</svg>
 
   <!-- ========== 背景画像（スクロールでフェードイン） ========== -->
   <div id="hero-bg" class="fixed inset-0 z-30 opacity-0 transition-none bg-cover bg-center pointer-events-none" style="background-image: url('海100.webp');"></div>
@@ -77,7 +105,7 @@ nav, main {
   <!-- ========== ナビゲーション（body直下、h-screenの後） ========== -->
   <nav id="nav-menu" class="hidden md:block fixed inset-0 z-50 bg-black/70 backdrop-blur-sm
   md:sticky md:top-0 md:inset-auto md:z-50 
-  md:bg-white/60 md:backdrop-blur-sm
+  md:bg-white/60 md:backdrop-blur-sm md:border-b
   transition-opacity duration-300">
   <ul class="flex flex-col items-center justify-center h-full gap-8 text-lg text-white
     md:h-auto md:flex-row md:gap-6 md:text-xs md:py-3 
@@ -96,16 +124,14 @@ nav, main {
   <!-- ========== メインパネル（白寄りすりガラス） ========== -->
   <div class="relative z-40 max-w-2xl mx-auto px-6 sm:px-12 py-8 bg-white/80 backdrop-blur-md rounded-2xl">
 
-
-
     <header id="site-header" class="flex items-center justify-center pt-12 pb-16 px-4">
   <div class="flex flex-col items-center gap-16 [writing-mode:vertical-rl]">
   <p class="self-start anim-fade2 text-[1rem] font-bold tracking-[0.4em] text-gray-400">
     劇団ケッペキ<br><span style="text-orientation: upright;">2026</span>年度新入生歓迎公演
   </p>
-  <img src="logo.png" alt="海まで100年" 
+  <img src="logo.png" alt="海まで100年" id="logo"
        class="anim-fade1 h-[60vh] max-h-[500px] w-auto">
-  <p class="self-end anim-fade3 text-[1rem] font-bold tracking-[0.3em] text-gray-700" style="text-align: right;">
+  <p class="self-end anim-fade3 text-[1rem] font-medium tracking-[0.3em] text-gray-700" style="text-align: right;">
     作｜笠木泉<br>演出｜北畠葵
   </p>
 </div>

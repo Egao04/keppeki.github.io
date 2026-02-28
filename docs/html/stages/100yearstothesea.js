@@ -128,3 +128,4 @@ onScroll(); // 初期状態にも適用
 // }, { threshold: 0.6});
 
 // fadeEls.forEach(el => sectionObserver.observe(el));
+
